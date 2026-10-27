@@ -47,7 +47,11 @@ API berjalan di `http://127.0.0.1:8000`. Endpoint utama berada pada grup autenti
 
 ## Catatan Kelengkapan Repositori
 
-Repositori ini belum menyertakan beberapa berkas kerangka Laravel, yaitu file `artisan`, folder `bootstrap`, folder `routes`, dan folder `database`. Karena itu proyek belum dapat dijalankan langsung dari hasil clone. Kode yang tersedia adalah controller, model, form request, API resource, konfigurasi, dan view bawaan. Berkas kerangka yang hilang perlu dilengkapi lebih dulu, misalnya dari proyek Laravel 12 baru, sebelum mengikuti langkah instalasi di atas.
+Kerangka aplikasi sudah dilengkapi mengikuti kerangka standar Laravel 12. Berkas yang ditambahkan meliputi file `artisan`, folder `bootstrap`, folder `routes` untuk web dan API, migration tabel users, cache, jobs, personal access tokens, tickets, dan ticket_replies, factory dan seeder bawaan, `AppServiceProvider`, serta dua API Resource yang dirujuk controller yaitu `UserResource` dan `TicketResource`. Kolom `role` ditambahkan pada tabel users karena dipakai oleh model dan controller. Proyek sudah diverifikasi dapat dijalankan dari hasil clone dengan mengikuti langkah instalasi di atas. Pengujian lokal memakai sqlite dengan mengatur `DB_CONNECTION=sqlite` pada file `.env`, sedangkan `.env.example` tetap memakai MySQL sesuai konfigurasi awal proyek. Seluruh endpoint utama sudah diuji dan berfungsi, meliputi registrasi, login, profil, logout, daftar dan detail tiket, pembuatan tiket, balasan tiket, dan statistik dashboard.
+
+## Tangkapan Layar
+
+![Tangkapan layar halaman utama](docs/screenshot.png)
 
 ## Lisensi
 
