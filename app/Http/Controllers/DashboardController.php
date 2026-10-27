@@ -25,10 +25,14 @@ class DashboardController extends Controller
             ->where('status', 'resolved')
             ->count();
 
+        $avgExpression = DB::connection()->getDriverName() === 'sqlite'
+            ? 'AVG((julianday(completed_at) - julianday(created_at)) * 24) as avg_time'
+            : 'AVG(TIMESTAMPDIFF(HOUR, created_at, completed_at)) as avg_time';
+
         $avgResolutionTime = Ticket::whereBetween('created_at', [$currentMonth, $endOfMonth])
             ->where('status', 'resolved')
             ->whereNotNull('completed_at')
-            ->select(DB::raw('AVG(TIMESTAMPDIFF(HOUR, created_at, completed_at)) as avg_time'))
+            ->select(DB::raw($avgExpression))
             ->value('avg_time') ?? 0;
 
         $statusDistribution = [
